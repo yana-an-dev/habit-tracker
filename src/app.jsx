@@ -1,10 +1,9 @@
-import Navbar from './components/navbar'
 import './app.css'
+import Habit from './components/habit';
+
 
 function App() {
-  return (
-    <Navbar />
-  );
+  return <Habit />
 }
 
 export default App;
