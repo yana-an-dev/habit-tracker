@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import Habits from './habits'
+const { count } = this.props.habit
 
 class Habit extends Component {
+
+
     state = { //memeber variable
-        count: 0,
+        count: { count },
     }
 
     handleIncrement = () => {
@@ -15,10 +19,13 @@ class Habit extends Component {
     }
 
     render() {
+        //console.log(this.props.habits)
+        //const habitName = this.props.habit.name //이게 불편하니까 
+        const { name, count } = this.props.habit //object destructuring 
         return (
             <li className="habit">
-                <span className="habit-name">Reading</span>
-                <span className="habit-count">{this.state.count}</span>
+                <span className="habit-name">{name}</span>
+                <span className="habit-count">{count}</span>
                 <button className="habit-button habit-increase"
                     onClick={this.handleIncrement}>
                     <i className="fas fa-plus-square"></i>
