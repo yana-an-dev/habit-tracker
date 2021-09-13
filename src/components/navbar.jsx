@@ -1,11 +1,20 @@
-import React from 'react'
-export default function Navbar() {
-    return (<>
-        <div>
-            <img src="" alt="leaf" />
-            <div>Habit Tracker</div>
-            <div className="counter">0</div>
-        </div>
 
-    </>)
-} 
+import React, { Component } from 'react';
+
+class Navbar extends Component {
+
+    render() {
+
+        return (
+
+            <nav className="navbar">
+                <i className="navbar-logo fas fa-leaf"></i>
+                <span className="navbar-title">Habit Tracker</span>
+                <span className="navbar-count">{this.props.totalCount}</span>
+            </nav>
+
+        );
+    }
+}
+
+export default Navbar;
