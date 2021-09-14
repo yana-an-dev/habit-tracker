@@ -88,3 +88,10 @@ button {
 .habit-delete{
   color: darkred;
 }
+.habits-reset{
+  color: white;
+  margin-left: 10em;
+  background-color: green;
+  padding: 0.3em 2em;
+  font-size: 1.5rem;
+}

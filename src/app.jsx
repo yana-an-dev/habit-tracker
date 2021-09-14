@@ -7,9 +7,7 @@ class App extends Component {
 
   state = {
     habits: [
-      { id: 1, name: 'reading', count: 0 },
-      { id: 2, name: 'running', count: 0 },
-      { id: 3, name: 'coding', count: 0 },
+
     ]
   }
 
@@ -50,6 +48,14 @@ class App extends Component {
     this.setState({ habits })
   }
 
+  handleReset = () => {
+    //const habits = []
+    const habits = this.state.habits.map(habit => {
+      habit.count = 0
+      return habit
+    })
+    this.setState({ habits })
+  }
 
   render() {
     return (
@@ -60,7 +66,8 @@ class App extends Component {
           onIncrement={this.handleIncrement}
           onDecrement={this.handleDecrement}
           onDelete={this.handleDelete}
-          onAdd={this.handleAdd} />
+          onAdd={this.handleAdd}
+          onReset={this.handleReset} />
 
       </ >
     )

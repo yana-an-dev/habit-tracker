@@ -18,6 +18,8 @@ class Habits extends Component {
                             onDelete={this.props.onDelete} />
                     )}
                 </ul>
+                <button className="habits-reset"
+                    onClick={this.props.onReset}>Reset</button>
             </>
         );
     }
