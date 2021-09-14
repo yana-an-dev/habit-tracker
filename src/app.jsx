@@ -7,27 +7,36 @@ class App extends Component {
 
   state = {
     habits: [
-
+      { id: 1, name: 'Reading', count: 0 },
+      { id: 2, name: 'Writing', count: 0 }
     ]
   }
 
   handleIncrement = (habit) => {
-    // console.log(`handleIncrement: ${habit.name}`)
-    const habits = [...this.state.habits]
-    //spread syntax로 로컬변수 habits array를 생성
-    const index = habits.indexOf(habit)
-    //Array api "indexOf"를 사용해서 인자로 받아온 habitdl 위치하는 인덱스를 찾는 로컬변수 index
-    habits[index].count++
+    const habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count + 1 }
+      } return item
+    })
+    // const habits = [...this.state.habits]
+    // const index = habits.indexOf(habit)
+    // habits[index].count++
     this.setState({ habits: habits })
   }
 
   handleDecrement = (habit) => {
-    console.log(`handleDecrement: ${habit.name}`)
-    const habits = [...this.state.habits]
-    const index = habits.indexOf(habit)
-    const count = habits[index].count - 1
-    habits[index].count = count < 0 ? 0 : count
-    // smelly code??
+
+    const habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        const count = habit.count - 1
+        return { ...habit, count: count < 0 ? 0 : count }
+      } return item
+    })
+    // const habits = [...this.state.habits]
+    // const index = habits.indexOf(habit)
+    // const count = habits[index].count - 1
+    // habits[index].count = count < 0 ? 0 : count
+    // // smelly code??
     this.setState({ habits })
   }
 
@@ -40,6 +49,7 @@ class App extends Component {
     this.setState({ habits })
   }
 
+
   handleAdd = (name) => {
 
     const habits = [...this.state.habits,
@@ -49,15 +59,18 @@ class App extends Component {
   }
 
   handleReset = () => {
-    //const habits = []
     const habits = this.state.habits.map(habit => {
-      habit.count = 0
-      return habit
+      // habit.count = 0
+      // return habit
+      if (habit.count !== 0) {
+        return { ...habit, count: 0 } //새로운 habit object를 만들어서 변화 감지
+      } return habit
     })
     this.setState({ habits })
   }
 
   render() {
+    console.log('app')
     return (
       <>
         <Navbar totalCount={this.state.habits.filter(item => item.count > 0).length} />

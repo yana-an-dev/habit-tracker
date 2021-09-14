@@ -1,31 +1,30 @@
-import React, { Component, useImperativeHandle } from 'react';
+import React, { memo } from 'react';
 
-class HabitAddForm extends Component {
-    inputRef = React.createRef()
-    onSubmit = (event) => {
+const HabitAddForm = memo((props) => {
+    const inputRef = React.createRef()
+    const onSubmit = (event) => {
         event.preventDefault()
-        const name = this.inputRef.current.value
-        name && this.props.onAdd(name)
+        const name = inputRef.current.value
+        name && props.onAdd(name)
         // if name exists, name will be passed to onAdd
-        this.inputRef.current.value = ""
+        inputRef.current.value = ""
     }
 
-    render() {
-        return (
-            <form className="add-form"
-                onSubmit={this.onSubmit}>
-                <input
-                    ref={this.inputRef}
-                    className="add-input"
-                    type="text"
-                    placeholder="Habit"
-                >
-                </input>
-                <button className="add-btn">Add</button>
-
-            </form>
-        );
-    }
-}
+    return (
+        <form className="add-form"
+            onSubmit={onSubmit}>
+            <input
+                ref={inputRef}
+                className="add-input"
+                type="text"
+                placeholder="Habit"
+            >
+            </input>
+            <button className="add-btn">Add</button>
+        </form>
+    )
+})
 
 export default HabitAddForm;
+
+
